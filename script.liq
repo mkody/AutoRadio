@@ -8,6 +8,9 @@ end
 if getenv("STREAM_DESC") == "" then
     setenv("STREAM_DESC", "Our selection of music")
 end
+if getenv("STREAM_MOUNTPOINT") == "" then
+    setenv("STREAM_MOUNTPOINT", "live")
+end
 
 # Playlist
 i_playlist = normalize(
@@ -37,9 +40,10 @@ output.icecast(
     name = getenv("STREAM_NAME"),
     description = getenv("STREAM_DESC"),
     url = getenv("STREAM_URL"),
-    mount = "live",
+    mount = getenv("STREAM_MOUNTPOINT"),
     password = getenv("ICECAST_SOURCE_PASSWORD"),
     host = "icecast",
     port = 8000,
+    encoding = "UTF-8",
     radio
 )

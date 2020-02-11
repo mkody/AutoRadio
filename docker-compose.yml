@@ -8,6 +8,8 @@ services:
     environment:
       - ICECAST_SOURCE_PASSWORD
       - ICECAST_ADMIN_PASSWORD
+      - ICECAST_RELAY_PASSWORD
+      - ICECAST_HOSTNAME
 
   liquidsoap:
     image: "phasecorex/liquidsoap"
@@ -17,6 +19,7 @@ services:
       - STREAM_NAME
       - STREAM_DESC
       - STREAM_URL
+      - STREAM_MOUNTPOINT
     depends_on:
       - icecast
     volumes:
