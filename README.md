@@ -21,7 +21,11 @@ All settings are optional but please set the passwords or they will stay to the 
 - `ICECAST_ADMIN_PASSWORD`: The password for Icecast's administration.
 - `ICECAST_RELAY_PASSWORD`: The password for Icecast's relays.
 - `ICECAST_HOSTNAME`: The hostname of your Icecast installation.
+- `ICECAST_MAX_SOURCES`: The maximum amount of sources.
 - `STREAM_NAME`: A title for your stream.
 - `STREAM_DESC`: A description for your stream.
 - `STREAM_URL`: A URL (like your website) to show on the stream details.
 - `STREAM_MOUNTPOINT`: The name of the mountpoint that Liquidsoap will use.
+
+> Note for `ICECAST_MAX_SOURCES`:
+> If you plan to directly stream to Icecast on another mountpoint, you need to set this to `2` or more.

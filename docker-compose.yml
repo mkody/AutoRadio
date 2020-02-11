@@ -2,7 +2,7 @@ version: '3'
 
 services:
   icecast:
-    image: "infiniteproject/icecast"
+    image: "mkody/icecast"
     ports:
       - "${ICECAST_PORT:-8000}:8000"
     environment:
@@ -10,6 +10,7 @@ services:
       - ICECAST_ADMIN_PASSWORD
       - ICECAST_RELAY_PASSWORD
       - ICECAST_HOSTNAME
+      - ICECAST_MAX_SOURCES
 
   liquidsoap:
     image: "phasecorex/liquidsoap"
