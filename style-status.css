@@ -1,0 +1,158 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  align-items: center;
+  background: #DF8AAC;
+  background: -webkit-linear-gradient(135deg, #DF8AAC, #B63A74);
+  background: linear-gradient(135deg, #DF8AAC, #B63A74);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  max-width: 420px;
+  padding: 1rem 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+a {
+  border-bottom: 1px dotted #0074D9;
+  color: #0074D9;
+  text-decoration: none;
+}
+
+a:hover {
+  border-bottom: 1px solid #0074D9;
+  color: #0074D9;
+  text-decoration: none;
+}
+
+h1 {
+  background: transparent url(https://rita.moe/rita-icon.png) no-repeat scroll left center;
+  background-size: contain;
+  font-family: Verdana, sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  margin-top: 3px;
+  padding: 10px 0px 10px 60px;
+  text-decoration: none;
+}
+
+h3 {
+  font-family: Verdana, sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+}
+
+h3 small {
+  color: #AAA;
+  font-size: 70%;
+  padding-left: 5px;
+}
+
+.roundbox {
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 35px;
+  padding: 15px 20px;
+}
+
+.roundbox h3 {
+  border-bottom: 1px groove #ACACAC;
+  margin-bottom: 10px;
+}
+
+.right {
+  float: right;
+}
+
+.mounthead h3 {
+  border-bottom: none;
+  float: left;
+  margin-bottom: 0px;
+}
+
+.mountcont {
+  border-top: 1px groove #ACACAC;
+  clear: both;
+}
+
+ul.mountlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.mountlist li {
+  display: inline;
+}
+
+a.play {
+  background: transparent url(/tunein.png) no-repeat scroll left center;
+  background-size: auto 100%;
+  border: none;
+  margin-left: 25px;
+  padding-left: 22px;
+}
+
+a.auth {
+  background: transparent url(/key.png) no-repeat scroll left top;
+  background-size: auto 100%;
+  border: none;
+  margin-left: 25px;
+  padding-left: 22px;
+}
+
+.audioplayer {
+  margin-top: 5px;
+}
+
+.audioplayer .plyr__controls {
+  justify-content: center;
+}
+
+.audioplayer .plyr__controls .plyr__controls__item:first-child {
+  margin-right: 0;
+}
+
+#footer {
+  border-top: 1px groove #ACACAC;
+  font-size: 80%;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 520px) {
+  body {
+    display: block;
+    min-height: calc(100vh - 2rem);
+    padding: 1rem;
+  }
+
+  .content {
+    max-width: none;
+    padding: 1rem;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 1.5em;
+    padding: 10px 0px 10px 50px;
+    text-align: left;
+  }
+
+  a.play {
+    margin-left: 15px;
+  }
+}

@@ -11,6 +11,9 @@ services:
       - ICECAST_RELAY_PASSWORD
       - ICECAST_HOSTNAME
       - ICECAST_MAX_SOURCES
+    volumes:
+      - ./status.xsl:/usr/share/icecast/web/status.xsl:ro
+      - ./style-status.css:/usr/share/icecast/web/style-status.css:ro
 
   liquidsoap:
     image: "phasecorex/liquidsoap"
