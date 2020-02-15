@@ -11,6 +11,7 @@ services:
       - ICECAST_RELAY_PASSWORD
       - ICECAST_HOSTNAME
       - ICECAST_MAX_SOURCES
+      - ICECAST_CHARSET
 
   liquidsoap:
     image: "phasecorex/liquidsoap"
