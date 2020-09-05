@@ -123,6 +123,10 @@ a.auth {
   justify-content: center;
 }
 
+.audioplayer .plyr__volume {
+  width: 110px;
+}
+
 .audioplayer .plyr__controls .plyr__controls__item:first-child {
   margin-right: 0;
 }

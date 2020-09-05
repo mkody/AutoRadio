@@ -10,8 +10,8 @@
         <title>Radio Rita.moe</title>
         <link rel="icon" href="https://rita.moe/rita-icon.png" />
         <link rel="stylesheet" type="text/css" href="style-status.css" />
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.5.8/plyr.css" />
-        <script src="https://cdn.plyr.io/3.5.8/plyr.polyfilled.js"></script>
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
+        <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
       </head>
       <body>
         <div class="content">
