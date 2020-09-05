@@ -100,13 +100,15 @@
           }
 
           function s () {
-            fetch('https://radio.rita.moe/status-json.xsl')
-              .then(r => r.json())
-              .then(j => {
-                setTimeout(_ => {
-                  document.querySelector('[data-mount="/music"] .playing').innerHTML = j.icestats.source.title
-                }, 5000)
-              })
+            document.querySelectorAll('div[data-mount]').forEach(e => {
+              fetch('https://radio.rita.moe/status-json.xsl?mount=' + e.dataset.mount)
+                .then(r => r.json())
+                .then(j => {
+                  setTimeout(_ => {
+                    e.querySelector('.playing').innerHTML = j.icestats.source.title
+                  }, 5000)
+                })
+            })
           }
 
           setInterval(s, 3000)
