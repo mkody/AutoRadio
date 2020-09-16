@@ -18,7 +18,7 @@ services:
       - ./style-status.css:/usr/share/icecast/web/style-status.css:ro
 
   liquidsoap:
-    image: "phasecorex/liquidsoap"
+    image: "savonet/liquidsoap:v1.4.3"
     restart: always
     command: ["/script.liq"]
     environment:
