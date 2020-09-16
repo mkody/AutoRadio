@@ -15,7 +15,7 @@ services:
       - ICECAST_CHARSET
 
   liquidsoap:
-    image: "phasecorex/liquidsoap"
+    image: "savonet/liquidsoap:v1.4.3"
     restart: always
     command: ["/script.liq"]
     environment:

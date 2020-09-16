@@ -1,3 +1,7 @@
+#!/usr/bin/liquidsoap
+# Allow root for official docker image
+set("init.allow_root", true)
+
 # Set environments if empty
 if getenv("ICECAST_SOURCE_PASSWORD") == "" then
     setenv("ICECAST_SOURCE_PASSWORD", "hackme")
