@@ -65,7 +65,7 @@
                       <xsl:value-of select="title" />
                     </div>
                     <div class="search">
-                      <a href="/" onclick="ss('{@mount}'); return false;">(search)</a>
+                      <a href="/" onclick="ss('{@mount}'); return false;">(search youtube)</a>
                     </div>
                   </div>
                 </div>
@@ -92,9 +92,9 @@
             fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&safeSearch=none&type=video&videoCategoryId=10&key=AIzaSyB0PbGfWP_AwEXx7_DypkJiB0qIjHxedi0&q=' + encodeURIComponent(title))
               .then(r => r.json())
               .then(j => {
-                se.innerHTML = '(search)'
+                se.innerHTML = '(search youtube)'
                 if (j.items.length > 0) {
-                  window.open('https://combine.fm/youtube/track/' + j.items[0].id.videoId, '_blank')
+                  window.open('https://www.youtube.com/watch?v=' + j.items[0].id.videoId, '_blank')
                 }
               })
           }
