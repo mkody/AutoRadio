@@ -13,9 +13,11 @@ services:
       - ICECAST_HOSTNAME
       - ICECAST_MAX_SOURCES
       - ICECAST_CHARSET
+    volumes:
+      - ./logs:/var/log/icecast
 
   liquidsoap:
-    image: "savonet/liquidsoap:v1.4.3"
+    image: "savonet/liquidsoap:v2.0.1"
     restart: always
     command: ["/script.liq"]
     environment:

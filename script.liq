@@ -1,6 +1,6 @@
 #!/usr/bin/liquidsoap
-# Allow root for official docker image
-set("init.allow_root", true)
+# Allow root
+settings.init.allow_root.set(true)
 
 # Set environments if empty
 if getenv("ICECAST_SOURCE_PASSWORD") == "" then
@@ -17,23 +17,24 @@ if getenv("STREAM_MOUNTPOINT") == "" then
 end
 
 # Playlist
-i_playlist = normalize(
-    playlist(
-        id="playlist",
-        mode="random",
-        reload=600,
-        "/music"
+i_playlist = crossfade(
+    duration=3.0,
+    smart=true,
+    blank.eat(
+        start_blank=true,
+        max_blank=1.0,
+        threshold=-45.0,
+        playlist(
+            mode="randomize",
+            reload=1,
+            reload_mode="rounds",
+            "/music"
+        )
     )
 )
 
-# Silence 
-i_silence = blank(id="blank")
-
-# Fallback to Silence if Playlist dies for some reason
-radio = fallback(
-    track_sensitive=false,
-    [ i_playlist, i_silence ]
-)
+# Make it safe
+radio = mksafe(i_playlist)
 
 # Output
 output.icecast(
@@ -41,13 +42,13 @@ output.icecast(
         bitrate=128,
         id3v2=true
     ),
-    name = getenv("STREAM_NAME"),
-    description = getenv("STREAM_DESC"),
-    url = getenv("STREAM_URL"),
-    mount = getenv("STREAM_MOUNTPOINT"),
-    password = getenv("ICECAST_SOURCE_PASSWORD"),
-    host = "icecast",
-    port = 8000,
-    encoding = "UTF-8",
+    name=getenv("STREAM_NAME"),
+    description=getenv("STREAM_DESC"),
+    url=getenv("STREAM_URL"),
+    mount=getenv("STREAM_MOUNTPOINT"),
+    password=getenv("ICECAST_SOURCE_PASSWORD"),
+    host="icecast",
+    port=8000,
+    encoding="UTF-8",
     radio
 )
