@@ -16,9 +16,10 @@ services:
     volumes:
       - ./status.xsl:/usr/share/icecast/web/status.xsl:ro
       - ./style-status.css:/usr/share/icecast/web/style-status.css:ro
+      - ./logs:/var/log/icecast
 
   liquidsoap:
-    image: "savonet/liquidsoap:v1.4.3"
+    image: "savonet/liquidsoap:v2.0.1"
     restart: always
     command: ["/script.liq"]
     environment:
