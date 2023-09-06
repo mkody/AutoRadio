@@ -10,8 +10,8 @@
         <title>Radio Rita.moe</title>
         <link rel="icon" href="https://rita.moe/rita-icon.png" />
         <link rel="stylesheet" type="text/css" href="style-status.css" />
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
-        <script src="https://cdn.plyr.io/3.6.2/plyr.polyfilled.js"></script>
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+        <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
       </head>
       <body>
         <div class="content">
@@ -36,14 +36,6 @@
                             <li>
                               <a class="play" href="{@mount}.m3u">M3U</a>
                             </li>
-                            <!--
-                            <li>
-                              <a class="play" href="{@mount}.xspf">XSPF</a>
-                            </li>
-                            <li>
-                              <a class="play" href="{@mount}.vclt">VCLT</a>
-                            </li>
-                            -->
                           </ul>
                         </xsl:otherwise>
                       </xsl:choose>
