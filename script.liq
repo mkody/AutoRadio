@@ -2,20 +2,6 @@
 # Allow root
 settings.init.allow_root.set(true)
 
-# Set environments if empty
-if getenv("ICECAST_SOURCE_PASSWORD") == "" then
-    setenv("ICECAST_SOURCE_PASSWORD", "hackme")
-end
-if getenv("STREAM_NAME") == "" then
-    setenv("STREAM_NAME", "Radio")
-end
-if getenv("STREAM_DESC") == "" then
-    setenv("STREAM_DESC", "Our selection of music")
-end
-if getenv("STREAM_MOUNTPOINT") == "" then
-    setenv("STREAM_MOUNTPOINT", "live")
-end
-
 # Playlist
 i_playlist = crossfade(
     duration=3.0,
@@ -42,11 +28,11 @@ output.icecast(
         bitrate=128,
         id3v2=true
     ),
-    name=getenv("STREAM_NAME"),
-    description=getenv("STREAM_DESC"),
-    url=getenv("STREAM_URL"),
-    mount=getenv("STREAM_MOUNTPOINT"),
-    password=getenv("ICECAST_SOURCE_PASSWORD"),
+    name=environment.get("STREAM_NAME", default="Radio"),
+    description=environment.get("STREAM_DESC", default="Our selection of music"),
+    url=environment.get("STREAM_URL"),
+    mount=environment.get("STREAM_MOUNTPOINT", default="live"),
+    password=environment.get("ICECAST_SOURCE_PASSWORD", default="hackme"),
     host="icecast",
     port=8000,
     encoding="UTF-8",
