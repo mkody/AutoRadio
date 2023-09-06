@@ -1,8 +1,8 @@
-version: '3'
+version: "3.6"
 
 services:
   icecast:
-    image: "mkody/icecast"
+    image: docker.io/mkody/icecast:latest
     restart: always
     ports:
       - "${ICECAST_PORT:-8000}:8000"
@@ -13,11 +13,9 @@ services:
       - ICECAST_HOSTNAME
       - ICECAST_MAX_SOURCES
       - ICECAST_CHARSET
-    volumes:
-      - ./logs:/var/log/icecast
 
   liquidsoap:
-    image: "savonet/liquidsoap:v2.1.3"
+    image: docker.io/savonet/liquidsoap:v2.2.1
     restart: always
     command: ["/script.liq"]
     environment:

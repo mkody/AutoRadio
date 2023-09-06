@@ -9,7 +9,7 @@
 ## Install
 - Copy `.env.example` to `.env` and edit it
 - Put music inside `music/`
-- Run `docker-compose up -d`
+- Run `docker compose up -d`
 - Listen to `http://localhost:8000/live`
   - Change `8000` with your `ICECAST_PORT`, `live` with your `STREAM_MOUNTPOINT`
 
@@ -19,7 +19,7 @@ All settings are optional but please set the passwords or they will stay to the 
 
 - `STREAM_NAME`: A title for your stream.
 - `STREAM_DESC`: A description for your stream.
-- `STREAM_URL`: A URL (like your website) to show on the stream details.
+- `STREAM_URL`: An URL (like your website) to show on the stream details.
 - `STREAM_MOUNTPOINT`: The name of the mountpoint that Liquidsoap will use.
 - `ICECAST_PORT`: The port to bind Icecast in the open.
 - `ICECAST_SOURCE_PASSWORD`: The password to stream audio to Icecast.
