@@ -3,7 +3,7 @@ version: "3.6"
 services:
   icecast:
     image: docker.io/mkody/icecast:latest
-    restart: always
+    restart: unless-stopped
     ports:
       - "${ICECAST_PORT:-8000}:8000"
     environment:
@@ -19,7 +19,7 @@ services:
 
   liquidsoap:
     image: docker.io/savonet/liquidsoap:v2.2.2
-    restart: always
+    restart: unless-stopped
     command: ["/script.liq"]
     environment:
       - ICECAST_SOURCE_PASSWORD

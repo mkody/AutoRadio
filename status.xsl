@@ -56,9 +56,6 @@
                       </xsl:if>
                       <xsl:value-of select="title" />
                     </div>
-                    <div class="search">
-                      <a href="/" onclick="ss('{@mount}'); return false;">(search youtube)</a>
-                    </div>
                   </div>
                 </div>
               </xsl:when>
@@ -77,21 +74,7 @@
         </div>
         <script type="text/javascript">
 <![CDATA[
-          function ss (mount) {
-            let title = document.querySelector('[data-mount="' + mount + '"] .playing').innerHTML
-            let se = document.querySelector('[data-mount="' + mount + '"] .search a')
-            se.innerHTML = 'Please wait...'
-            fetch('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&safeSearch=none&type=video&videoCategoryId=10&key=AIzaSyB0PbGfWP_AwEXx7_DypkJiB0qIjHxedi0&q=' + encodeURIComponent(title))
-              .then(r => r.json())
-              .then(j => {
-                se.innerHTML = '(search youtube)'
-                if (j.items.length > 0) {
-                  window.open('https://www.youtube.com/watch?v=' + j.items[0].id.videoId, '_blank')
-                }
-              })
-          }
-
-          function s () {
+          function np () {
             document.querySelectorAll('div[data-mount]').forEach(e => {
               fetch('https://radio.rita.moe/status-json.xsl?mount=' + e.dataset.mount)
                 .then(r => r.json())
@@ -103,7 +86,7 @@
             })
           }
 
-          setInterval(s, 3000)
+          setInterval(np, 3000)
 
           document.querySelectorAll('audio').forEach(e => {
             new Plyr(e, {
@@ -118,4 +101,3 @@
     </html>
   </xsl:template>
 </xsl:stylesheet>
-
