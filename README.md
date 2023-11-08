@@ -3,7 +3,7 @@
 
 ## Requirements
 - docker
-- docker-compose
+- docker compose
 - Some music
 
 ## Install

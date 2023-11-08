@@ -18,7 +18,7 @@ services:
       - ./style-status.css:/usr/share/icecast/web/style-status.css:ro
 
   liquidsoap:
-    image: docker.io/savonet/liquidsoap:v2.2.1
+    image: docker.io/savonet/liquidsoap:v2.2.2
     restart: always
     command: ["/script.liq"]
     environment:

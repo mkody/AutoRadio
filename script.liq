@@ -1,7 +1,4 @@
 #!/usr/bin/liquidsoap
-# Allow root
-settings.init.allow_root.set(true)
-
 # Playlist
 i_playlist = crossfade(
     duration=3.0,
