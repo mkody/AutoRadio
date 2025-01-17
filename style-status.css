@@ -131,6 +131,11 @@ a.auth {
   margin-right: 0;
 }
 
+.audiooplayer .plyr__controls .plyr__controls__item.plyr__time {
+  flex-grow: 1;
+  text-align: left;
+}
+
 #footer {
   border-top: 1px groove #ACACAC;
   font-size: 80%;

@@ -7,7 +7,7 @@
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-        <title>Radio Rita.moe</title>
+        <title>RRM - radio.rita.moe</title>
         <link rel="icon" href="https://rita.moe/rita-icon.png" />
         <link rel="stylesheet" type="text/css" href="style-status.css" />
         <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
@@ -15,7 +15,7 @@
       </head>
       <body>
         <div class="content">
-          <h1 id="header">Radio Rita.moe</h1>
+          <h1 id="header">radio.rita.moe</h1>
           <!--mount point stats-->
           <xsl:for-each select="source">
             <xsl:choose>
@@ -81,12 +81,12 @@
                 .then(j => {
                   setTimeout(_ => {
                     e.querySelector('.playing').innerHTML = j.icestats.source.title
-                  }, 5000)
+                  }, 3000)
                 })
             })
           }
 
-          setInterval(np, 3000)
+          setInterval(np, 5000)
 
           document.querySelectorAll('audio').forEach(e => {
             new Plyr(e, {
