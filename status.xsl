@@ -74,19 +74,24 @@
         </div>
         <script type="text/javascript">
 <![CDATA[
-          function np () {
+          function np (wait) {
             document.querySelectorAll('div[data-mount]').forEach(e => {
-              fetch('https://radio.rita.moe/status-json.xsl?mount=' + e.dataset.mount)
+              fetch('./status-json.xsl?mount=' + e.dataset.mount)
                 .then(r => r.json())
                 .then(j => {
                   setTimeout(_ => {
-                    e.querySelector('.playing').innerHTML = j.icestats.source.title
-                  }, 3000)
+                    if (j.icestats.source.title) {
+                      e.querySelector('.playing').innerHTML = j.icestats.source.title
+                    } else {
+                      e.querySelector('.playing').innerHTML = ''
+                    }
+                  }, wait ?? 3000)
                 })
             })
           }
 
           setInterval(np, 5000)
+          np(0)
 
           document.querySelectorAll('audio').forEach(e => {
             new Plyr(e, {
