@@ -2,7 +2,6 @@
 # Playlist
 i_playlist = crossfade(
     duration=3.0,
-    smart=true,
     blank.eat(
         start_blank=true,
         max_blank=1.0,

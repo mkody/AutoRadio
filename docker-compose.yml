@@ -1,9 +1,8 @@
-version: "3.6"
-
 services:
   icecast:
+    container_name: autoradio-icecast
     image: docker.io/mkody/icecast:latest
-    restart: always
+    restart: unless-stopped
     ports:
       - "${ICECAST_PORT:-8000}:8000"
     environment:
@@ -15,17 +14,18 @@ services:
       - ICECAST_CHARSET
 
   liquidsoap:
-    image: docker.io/savonet/liquidsoap:v2.2.2
-    restart: always
+    container_name: autoradio-liquidsoap
+    image: docker.io/savonet/liquidsoap:v2.3.1
+    restart: unless-stopped
     command: ["/script.liq"]
+    depends_on:
+      - icecast
     environment:
       - ICECAST_SOURCE_PASSWORD
       - STREAM_NAME
       - STREAM_DESC
       - STREAM_URL
       - STREAM_MOUNTPOINT
-    depends_on:
-      - icecast
     volumes:
       - ./music:/music:ro
       - ./script.liq:/script.liq:ro
