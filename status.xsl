@@ -74,15 +74,87 @@
         </div>
         <script type="text/javascript">
 <![CDATA[
+          // We'll store the last title of the current mount point to check for changes
+          let lastTitle = ''
+          // Store the current mount point
+          let currentMount = ''
+          // Store the last notification
+          let lastNotification = null
+
+          // On every audio element, create a new Plyr instance
+          document.querySelectorAll('div[data-mount]').forEach((e) => {
+            const plyr = new Plyr(
+              e.querySelector('audio'),
+              {
+                controls: ['play', 'current-time', 'mute', 'volume'],
+                invertTime: false,
+                toggleInvert: false,
+              }
+            )
+
+            // When we start playing, store current mount point, clear last title and stop all other players
+            plyr.on(
+              'play',
+              (_) => {
+                currentMount = e.dataset.mount
+                lastTitle = ''
+
+                document.querySelectorAll('[data-mount]').forEach((a) => {
+                  if (a !== e) {
+                    a.querySelector('audio').stop()
+                  }
+                })
+              }
+            )
+
+            // When we pause, clear current mount point and stop all data
+            plyr.on(
+              'pause',
+              (_) => {
+                // To prevent overlaps, we only clear the current mount if it's the same as the one we're pausing
+                if (currentMount === e.dataset.mount) {
+                  currentMount = ''
+                }
+
+                plyr.stop()
+              }
+            )
+          })
+
           function np (wait) {
-            document.querySelectorAll('div[data-mount]').forEach(e => {
+            // Find all mount points and fetch their status
+            document.querySelectorAll('div[data-mount]').forEach((e) => {
               fetch('./status-json.xsl?mount=' + e.dataset.mount)
-                .then(r => r.json())
-                .then(j => {
-                  setTimeout(_ => {
+                .then((r) => r.json())
+                .then((j) => {
+                  // We delay the update to match the usual delay of the audio stream
+                  setTimeout((_) => {
+                    // The title may not be present, so we check for it
                     if (j.icestats.source.title) {
+                      // Update the now playing text
                       e.querySelector('.playing').innerHTML = j.icestats.source.title
+
+                      // If the title has changed and this is our current playing mount
+                      if (lastTitle !== j.icestats.source.title && currentMount === e.dataset.mount) {
+                        // Update the last title
+                        lastTitle = j.icestats.source.title
+
+                        // If we have permission, send a notification
+                        if ('Notification' in window && Notification.permission === 'granted') {
+                          lastNotification = new Notification(
+                            'RRM - Now Playing',
+                            {
+                              body: j.icestats.source.title,
+                              icon: 'https://rita.moe/rita-icon.png',
+                              renotify: true,
+                              requireInteraction: false,
+                              tag: 'now-playing',
+                            }
+                          )
+                        }
+                      }
                     } else {
+                      // If the title is not present, clear the now playing text
                       e.querySelector('.playing').innerHTML = ''
                     }
                   }, wait ?? 3000)
@@ -90,16 +162,25 @@
             })
           }
 
+          // Enable interval to fetch now playing data
           setInterval(np, 5000)
+          // And run it immediately on page load
           np(0)
 
-          document.querySelectorAll('audio').forEach(e => {
-            new Plyr(e, {
-              controls: ['play', 'current-time', 'mute', 'volume'],
-              invertTime: false,
-              toggleInvert: false
-            })
-          })
+          // Request notification permission if it's still default
+          if ('Notification' in window && Notification.permission === 'default') {
+            Notification.requestPermission()
+          }
+
+          document.addEventListener(
+            'visibilitychange',
+            () => {
+              // If the page is visible, close the last notification
+              if (document.visibilityState === 'visible') {
+                lastNotification?.close()
+              }
+            }
+          )
 ]]>
         </script>
       </body>
