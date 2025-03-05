@@ -78,8 +78,6 @@
           let lastTitle = ''
           // Store the current mount point
           let currentMount = ''
-          // Store the last notification
-          let lastNotification = null
 
           // On every audio element, create a new Plyr instance
           document.querySelectorAll('div[data-mount]').forEach((e) => {
@@ -141,15 +139,25 @@
 
                         // If we have permission, send a notification
                         if ('Notification' in window && Notification.permission === 'granted') {
-                          lastNotification = new Notification(
+                          const lastNotification = new Notification(
                             'RRM - Now Playing',
                             {
                               body: j.icestats.source.title,
                               icon: 'https://rita.moe/rita-icon.png',
                               renotify: true,
-                              requireInteraction: false,
+                              requireInteraction: true,
+                              silent: true,
                               tag: 'now-playing',
                             }
+                          )
+
+                          // Close the notification after 10 seconds, as renotify
+                          // isn't working perfectly when the track changes
+                          setTimeout(
+                            (_) => {
+                              lastNotification.close()
+                            },
+                            10000
                           )
                         }
                       }
@@ -171,16 +179,6 @@
           if ('Notification' in window && Notification.permission === 'default') {
             Notification.requestPermission()
           }
-
-          document.addEventListener(
-            'visibilitychange',
-            () => {
-              // If the page is visible, close the last notification
-              if (document.visibilityState === 'visible') {
-                lastNotification?.close()
-              }
-            }
-          )
 ]]>
         </script>
       </body>
