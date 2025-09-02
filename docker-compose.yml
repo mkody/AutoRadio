@@ -15,7 +15,7 @@ services:
 
   liquidsoap:
     container_name: autoradio-liquidsoap
-    image: docker.io/savonet/liquidsoap:v2.3.1
+    image: docker.io/savonet/liquidsoap:v2.4.0
     restart: unless-stopped
     command: ["/script.liq"]
     depends_on:
